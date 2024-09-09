@@ -2,20 +2,6 @@
 
 using namespace std;
 
-/*
-Remember these two functions are not optimized for other inputs.
-I have wrote them for this specific task
-*/
-
-int perimeter(vector<int>& Vec){
-    int result = 2*(Vec[0] + Vec[1]);
-    return result;
-}
-
-int cubic_volume(vector<int>& Vec){
-    int result = Vec[0]*Vec[1]*Vec[2];
-    return result;
-}
 
 int main(){
 
@@ -47,11 +33,11 @@ int main(){
         // sorting the sides to easily find least product
         sort(sides.begin(), sides.end());
 
-        int least_perimeter = perimeter(sides);
+        int least_perimeter = 2 * accumulate(sides.begin(), sides.begin() + 2, 0);
 
-        int volume__ = cubic_volume(sides);
+        int volume_of_box = accumulate(sides.begin(), sides.end(), 1, multiplies<int>());
 
-        required_ribbon += volume__ + least_perimeter;
+        required_ribbon += volume_of_box + least_perimeter;
         
     }
 
