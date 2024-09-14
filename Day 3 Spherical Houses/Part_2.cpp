@@ -5,6 +5,17 @@
 
 using namespace std;
 
+void move(pair<int, int>& position, const char& direction, set<pair<int, int>>& houses){
+    switch(direction){
+        case '^' : position.second++; break;
+        case 'v' : position.second--; break;
+        case '>' : position.first++; break;
+        case '<' : position.first--; break;
+    }
+
+    houses.insert(position);
+}
+
 int main(){
 
     /*
@@ -54,40 +65,10 @@ int main(){
             }
 
             if(i%2 == 0){
-                if(line[i] == '^'){
-                    position_santa.second++;
-                    houses.insert(position_santa);
-                }
-                else if(line[i] == 'v'){
-                    position_santa.second--;
-                    houses.insert(position_santa);
-                }
-                else if(line[i] == '>'){
-                    position_santa.first++;
-                    houses.insert(position_santa);
-                }
-                else if(line[i] == '<'){
-                    position_santa.first--;
-                    houses.insert(position_santa);
-                }
+                move(position_santa, line[i], houses);
             }
             else{
-                if(line[i] == '^'){
-                    position_robo_santa.second++;
-                    houses.insert(position_robo_santa);
-                }
-                else if(line[i] == 'v'){
-                    position_robo_santa.second--;
-                    houses.insert(position_robo_santa);
-                }
-                else if(line[i] == '>'){
-                    position_robo_santa.first++;
-                    houses.insert(position_robo_santa);
-                }
-                else if(line[i] == '<'){
-                    position_robo_santa.first--;
-                    houses.insert(position_robo_santa);
-                }
+                move(position_robo_santa, line[i], houses);
             }
         }
     }
